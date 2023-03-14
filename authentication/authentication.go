@@ -6,7 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func RegisterAuth(mongoClient *mongo.Client, ctx context.Context, app *fiber.App) {
+func RegisterAuth(mongoClient *mongo.Client, ctx context.Context, app *fiber.App) error {
 	authRepo := NewMongoRepository(mongoClient)
 	jwtHelper := NewJWTHelper()
 	authService := NewService(authRepo, jwtHelper)
@@ -16,6 +16,7 @@ func RegisterAuth(mongoClient *mongo.Client, ctx context.Context, app *fiber.App
 		return authHandler.Login(ctx, c)
 	})
 
+	return nil
 }
 
 type AuthHandler struct {

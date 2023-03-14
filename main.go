@@ -37,6 +37,7 @@ func init() {
 }
 
 func main() {
+
 	if fiberLambda != nil {
 		lambda.Start(Handler)
 	}
